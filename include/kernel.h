@@ -8,13 +8,13 @@
 #ifndef __KERNEL__
 #define __KERNEL__
 
-
+#undef offsetof
+#define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
 
 #define container_of(ptr, type, member) ({			\
         const typeof( ((type *)0)->member ) *__mptr = (ptr);	\
         (type *)( (char *)__mptr - offsetof(type,member) );})
 
-#define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
 
 
 #ifdef DEBUG
@@ -26,6 +26,6 @@
 #endif
 
 #define debug_func() \
-	pr_debug("in function: %s", __FUNCTION__)
+	pr_debug("in function: %s\n", __FUNCTION__)
 
 #endif

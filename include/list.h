@@ -17,8 +17,10 @@
 
 #ifndef NULL
 #define NULL 0
+#endif
 
-#include "poison.h"
+#include <kernel.h>
+#include <poison.h>
 
 
 struct list_head {

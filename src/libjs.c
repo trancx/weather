@@ -8,8 +8,8 @@
 #include <json.h>
 #include <stdio.h>
 #include <string.h>
-#include "libjs.h"
-
+#include <libjs.h>
+#include <kernel.h>
 /**
  * @parent: parent json_obj
  * @childname: the name of this json_value
@@ -26,13 +26,14 @@
  */
 json_value * fetch_name( const json_object_entry * entry,
 		int length, const json_char * childname) {
+	debug_func();
 	json_value* ret = NULL;
 	unsigned i;
 
 	for(i=0; i < length; ++i ) {
 		if( !strcmp(childname, entry[i].name) ) {
 				ret = entry[i].value;
-				pr_debug("%s: child found", __FUNCTION__);
+				pr_debug("%s: child found name: %s\n", __FUNCTION__, childname);
 				break;
 			}
 	}
@@ -43,6 +44,8 @@ json_value * fetch_name( const json_object_entry * entry,
  * absolutely, functions need to be tweaked@!
  */
 json_value * fetch_child( const json_value * parent ,const json_char * childname ) {
+	pr_debug("%s: finding child: %s\n", __FUNCTION__, childname);
+	debug_func();
 	int i;
 	json_value * ret = NULL;
 	json_object_entry* tmp;
@@ -56,8 +59,11 @@ array: /* this _func should be divided, like above */
 		goto out;
 	for(i=0; i < entry_array(parent).length; i++ ) {
 		ret = fetch_child( entry_array(parent).values[i], childname);
-		if( ret ) break;
-
+		pr_debug("fetching_child, name: %s\n", childname);
+		if( ret ) {
+			pr_debug("child named %s found\n", childname);
+			break;
+		}
 	}
 out:
 	return ret;
@@ -70,8 +76,10 @@ out:
  *
  */
 json_value * fetch_path( const json_value * value, const json_char * path ) {
-
 }
+
+
+
 
 
 

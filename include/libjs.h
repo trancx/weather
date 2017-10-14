@@ -13,6 +13,10 @@
 #define entry_array(a) ((a)->u.array)
 #define entry_string(s) ((s)->u.string)
 
+extern json_value * fetch_name( const json_object_entry * entry,
+		int length, const json_char * childname);
 
+extern json_value * fetch_child( const json_value * parent ,
+		const json_char * childname );
 
 #endif /* INCLUDE_LIBJS_H_ */

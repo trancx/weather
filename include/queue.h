@@ -8,12 +8,14 @@
 #ifndef INCLUDE_QUEUE_H_
 #define INCLUDE_QUEUE_H_
 
-#include "list.h"
+#include <list.h>
 
-/* declaration */
-extern struct list_head query_q;
-extern struct list_head result_q;
-
+	/* queue.c */
+extern void * thread_do_query(void * );
+extern void * thread_do_notify(void *);
+extern void notify(struct query *);
+extern void send_attach(struct query *);
+extern void receive_attach(struct query *);
 
 
 #endif /* INCLUDE_QUEUE_H_ */

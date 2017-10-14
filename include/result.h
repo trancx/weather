@@ -8,7 +8,6 @@
 #ifndef INCLUDE_RESULT_H_
 #define INCLUDE_RESULT_H_
 
-#include "list.h"
 
 #define LOCATION_ITEMS 5
 #define WEATHER_ITEMS 3
@@ -39,12 +38,13 @@ struct instruct {
 	string belief;
 	string details;
 };
-#endif
+
 
 struct suggest {
 	unsigned int length;
 	struct instruct * d;
 };
+#endif
 
 struct result {
 	struct location * locate;		/* location */
