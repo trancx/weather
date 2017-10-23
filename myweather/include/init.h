@@ -8,6 +8,8 @@
 #ifndef INCLUDE_INIT_H_
 #define INCLUDE_INIT_H_
 
+/*  init.c */
+extern void init();
 /*	mycurl.c */
 extern void init_curl();
 extern void clean_curl();

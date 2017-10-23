@@ -3,8 +3,8 @@
 
 #include <QEvent>
 extern "C" {
-    #include "result.h"
-    #include "query.h"
+    #include <result.h>
+    #include <query.h>
 }
 
 class QWeatherEvent : public QEvent

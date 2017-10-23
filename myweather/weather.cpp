@@ -5,6 +5,7 @@
 
 Weather::Weather(QFrame *parent, int minw, int minh) : QFrame(parent)
 {
+
     setWindowIcon(QIcon(QPixmap(":/imgs/pix/im-gadugadu.png")));
     setWindowFlags(Qt::FramelessWindowHint);
     setMouseTracking(true);
@@ -44,7 +45,7 @@ void Weather::setupImage() {
     QPalette plaette;
 //    this->setWindowFlags(Qt::FramelessWindowHint);
     plaette.setBrush(widget->backgroundRole(),
-        QBrush(QPixmap(":/imgs/pix/overcast.jpg").scaled(this->size())));
+        QBrush(QPixmap(":/imgs/pix/foggy.jpg").scaled(this->size())));
     widget->setPalette(plaette);
     widget->setAutoFillBackground(true);
 }

@@ -10,7 +10,7 @@
  */
 
 #include <result.h>
-#include "json.h"
+#include <json.h>
 #include <malloc.h>
 #include <string.h>
 #include <query.h>
@@ -29,7 +29,7 @@ static struct server weather = {
  */
 static struct sub_path now = {
 	.api = "weather/now.json",
-	.lang = "zh-Hans" /* simple Chinese */
+    .lang = "en" /* simple Chinese */
 };
 
 void struct_init() {

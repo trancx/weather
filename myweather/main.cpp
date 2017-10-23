@@ -3,21 +3,27 @@
 #include <QListWidget>
 #include "resultitem.h"
 #include "centralwidget.h"
+#include <QDebug>
+
+extern "C" {
+    #include <init.h>
+}
 
 const QEvent::Type WeatherEventType
     = (QEvent::Type)QEvent::registerEventType();
 /* it requires a forced conversion */
 
-int main(int argc, char *argv[])
+extern "C" {
+int mainWidget(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Weather w(NULL, 770, 548);
     w.show();
-
+    init();
 
     return a.exec();
+    }
 }
-
 extern "C" {
     void notifyWeather(struct query * q) {
         QCoreApplication::postEvent((CentralWidget *)q->arg,

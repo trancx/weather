@@ -32,7 +32,13 @@ SOURCES += \
     sideframe.cpp \
     weather.cpp \
     resultitem.cpp \
-    qweatherevent.cpp
+    qweatherevent.cpp \
+    src/build.c \
+    src/init.c \
+    src/json.c \
+    src/libjs.c \
+    src/mycurl.c \
+    src/queue.c
 
 HEADERS += \
         mainwidget.h \
@@ -42,9 +48,16 @@ HEADERS += \
     sideframe.h \
     weather.h \
     resultitem.h \
-    query.h \
-    result.h \
-    qweatherevent.h
+    qweatherevent.h \
+    include/init.h \
+    include/json.h \
+    include/kernel.h \
+    include/libjs.h \
+    include/list.h \
+    include/poison.h \
+    include/query.h \
+    include/queue.h \
+    include/result.h
 
 RESOURCES += \
     imgs.qrc

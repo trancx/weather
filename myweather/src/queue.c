@@ -26,6 +26,7 @@
 LIST_HEAD(query_q);
 LIST_HEAD(result_q);
 
+extern void notifyWeather(struct query * q);
 
 /* 	query mutex lock, uh..  */
 pthread_mutex_t q_mutex;
@@ -55,7 +56,7 @@ void * thread_do_query( void * arg ) {
 		list_del(&q->q_node);
 		pr_debug("%s: unload the query!\n", __FUNCTION__ );
 		if( q->flag & QUERY_UPDATE) {
-			pr_debug("%s: doing update", __FUNCTION__);
+			pr_debug("%s: doing update\n", __FUNCTION__);
 			free(q->data);
 			q->data = NULL;
 			q->size = 0;
@@ -87,7 +88,7 @@ void * thread_do_notify( void * arg) {
 			pr_debug("%s: result url: %s\n size: %lu", __FUNCTION__,
 					rawdata->url, rawdata->size);
 			parse_result(rawdata); /* now to parse and abstract the result*/
-			notify(rawdata);
+            notifyWeather(rawdata);
 		}
 
 
@@ -134,10 +135,8 @@ void recieve_attach( struct query * result ) {
 }
 
 /**
- *
- */
 void notify(struct query * res) {
-	/* uh.. it's time to laungh a signal */
+	/* uh.. it's time to laungh a signal 
 	debug_func();
 	if( res->flag & QUERY_SUCCESS) {
 		show_result(res);
@@ -146,6 +145,7 @@ void notify(struct query * res) {
 	}
 
 }
+ */
 
 /*	init these two threads! */
 void thread_init() {

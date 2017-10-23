@@ -1,10 +1,13 @@
 #include "qweatherevent.h"
 #include <QLatin1String>
 
-
 QWeatherEvent::QWeatherEvent(Type type, struct query * result)
                     : QEvent(type), q(result) {
 
+}
+
+bool QWeatherEvent::isSuccess() {
+    return q->flag & QUERY_SUCCESS
 }
 
 QString QWeatherEvent::getWeather() {

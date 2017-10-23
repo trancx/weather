@@ -3,21 +3,25 @@
 #include <QPalette>
 #include <cstring>
 #include <QDebug>
+#include <malloc.h>
+#include <cstring>
 
 extern "C" {
-    #include "query.h"
-    #include "result.h"
+    #include <query.h>
+    #include <result.h>
 }
 
+/* for cpp to invoke */
+extern "C" void send_attach(struct query *);
 
 
 CentralWidget::~CentralWidget() {
-    delete w; // contains icon tem, setlayout(local)
-    delete local;
-    delete global;
-    delete icon;
-    delete temperature;
-    delete weather;
+//    delete w; // contains icon tem, setlayout(local)
+//    delete local;
+//    delete global;
+//    delete icon;
+//    delete temperature;
+//    delete weather;
     delete query;
 }
 
@@ -89,6 +93,7 @@ void CentralWidget::instantiate() {
     // 这是为了发送事件的时候确认aim而已。。。。
     query->size = 0;
     query->data = NULL;
+    query->url = NULL;
 }
 
 bool CentralWidget::event(QEvent * event) {
@@ -119,13 +124,17 @@ void CentralWidget::weatherEvent(QEvent * event ) {
 
 void CentralWidget::setUrl(QString str) {
     qDebug() << "Url: " << str;
-    std::string s = str.toStdString();
-    query->url = (char *)s.c_str();
+    int len;
+    QByteArray ba = str.toLatin1();
+    len = ba.length();
+    query->url = (char *)malloc(len + 1);
+    memset(query->url, 0, len+1);
+    strncpy(query->url, ba.data(), ba.length());
 }
 
 
 void CentralWidget::setTemperature(QString str ) {
-    temperature->setText(str);
+    temperature->setText(str + "°");
 }
 
 void CentralWidget::setWeather(QString str) {
@@ -150,5 +159,5 @@ void CentralWidget::refresh()
 }
 
 void CentralWidget::getWeather() {
-    ::send_attach(query);
+    send_attach(query);
 }

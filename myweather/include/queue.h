@@ -14,7 +14,7 @@
 extern void * thread_do_query(void * );
 extern void * thread_do_notify(void *);
 extern void notify(struct query *);
-extern void send_attach(struct query *);
+
 extern void receive_attach(struct query *);
 
 

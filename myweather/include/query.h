@@ -8,7 +8,7 @@
 #ifndef INCLUDE_QUERY_H_
 #define INCLUDE_QUERY_H_
 
-//#include <list.h>
+#include <list.h>
 
 #define QUERY_FAIL  (1UL)
 #define QUERY_SUCCESS (1UL << 1)
@@ -19,8 +19,7 @@
 #define SUGGEST_API
 
 
-/* for cpp to invoke */
-extern void send_attach(struct query *);
+
 
 
 
@@ -40,8 +39,8 @@ struct sub_path {
 
 struct query {
 	unsigned int flag;
-    /* struct list_head q_node;*/
-	char * url;
+	struct list_head q_node;
+    char * url;
 	size_t size;
 	void * data;
     void * arg;

@@ -54,6 +54,7 @@ void MainWidget::newCentralWidget(ResultItem * addr) {
     cw->setUrl(addr->getName());
     cw->setWeather("....");
     cw->setTemperature("__°");
+    cw->getWeather();
     connect(addr, SIGNAL(emitShow(ResultItem*)),
             this, SLOT(showCentralWidget(ResultItem*)) );
     emit emitChanged(addr);
